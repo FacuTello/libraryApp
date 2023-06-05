@@ -1,0 +1,12 @@
+/* container Styles */
+
+.fluid-container{
+    background-color: dimgray;
+}
+
+.cards-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+/* /container Styles */
