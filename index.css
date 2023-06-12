@@ -1,4 +1,4 @@
-/* container Styles */
+/* Containers Styles */
 
 .fluid-container{
     background-color: dimgray;
@@ -9,4 +9,59 @@
     grid-template-columns: 1fr 1fr 1fr;
 }
 
-/* /container Styles */
+.card{
+    background-color: rgb(218, 99, 99);
+    text-align: center;
+    font-size: 25px;
+    font-family: 'Josefin Sans', sans-serif;
+    margin-top: 30px;
+    margin-left: 20px;
+    border: 2px solid black;
+    width: 350px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* /Containers Styles */
+
+/* Text Styles */
+
+h1{
+    font-family: 'Josefin Sans', sans-serif;
+    margin-top: 10px;
+}
+
+.cardText{
+    font-weight: bold;
+}
+
+#checkbox{
+    width: 40px;
+}
+
+/* /Text Styles */
+
+.btn-danger {
+
+    width: 300px;
+    height: 50px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 30px;
+}
+
+@media (max-width: 596px) { 
+    .cards-container{
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+    .card{
+        background-color: rgb(218, 99, 99);
+        text-align: center;
+        font-size: 25px;
+        font-family: 'Josefin Sans', sans-serif;
+        margin-top: 30px;
+        margin-left: 65px;
+        border: 2px solid black;
+        width: 350px;
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+        }
+}

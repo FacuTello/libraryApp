@@ -1,59 +1,96 @@
-// Creo el array vacio
+
 let myLibrary = [];
 
-// Creo el constructor del libro
-function Book(title, author, pages, wasRead){
-    this.title = title,
-    this.author = author,
-    this.pages = pages,
-    this.wasRead = wasRead,
-    this.info = function(){
-        console.log(`${this.title} by ${this.author}, ${this.pages} pages, ${this.wasRead ? 'read' : 'unread'}`);
-    }
+function Book(title, author, pages, wasRead) {
+  this.title = title;
+  this.author = author;
+  this.pages = pages;
+  this.wasRead = wasRead;
+  this.info = function () {
+    console.log(`${this.title} by ${this.author}, ${this.pages} pages, ${this.wasRead ? 'read' : 'unread'}`);
+  };
+  
 }
 
-// Selecciono el boton en el DOM y luego elijo el boton para que se ejecute la funcion
-addToArrayButton = document.querySelector('#agregarArray');
+const addToArrayButton = document.querySelector('#agregarArray');
 addToArrayButton.addEventListener('click', addToArray);
 
-function addToArray(){
-    // Estas lineas toman el ingreso del usuario en el input y lo asignan a una variable
-    capturaNombre = document.getElementById("nombreLibro").value;
-    capturaAutor = document.getElementById("autorLibro").value;
-    capturaPaginas = document.getElementById("paginasLibro").value;
+function addToArray() {
+  let capturaNombre = document.getElementById('nombreLibro').value;
+  let capturaAutor = document.getElementById('autorLibro').value;
+  let capturaPaginas = document.getElementById('paginasLibro').value;
+  let capturaRead = document.getElementById('checkbox').checked;
 
-    // Se crea un nuevo libro con las variables tomadas del usuario y se ingresan al array
-    nuevoLibro = new Book(capturaNombre, capturaAutor, capturaPaginas, false);
-    myLibrary.push(nuevoLibro);
-    console.log(myLibrary)
-    
-    // Se crea el for que recorre el array e imprime las tarjetas necesarias
+  const nuevoLibro = new Book(capturaNombre, capturaAutor, capturaPaginas, capturaRead);
+  myLibrary.push(nuevoLibro);
+  console.log(myLibrary);
+ 
+  const card = document.querySelector('.cards-container');
+  const div = document.createElement('div');
+  div.classList.add('card');
+  card.appendChild(div);
 
-    for (let i= 0; i < myLibrary.length; i++){
-    // Creo el div en donde van a aparecer las tarjetas
-        const card = document.querySelector(".cards-container");
-        const div = document.createElement('div');
-        card.appendChild(div);
+  const pnombre = document.createElement('p');
+  pnombre.classList.add('cardText');
+  const textoNombre = `Nombre: ${capturaNombre}`;
+  pnombre.textContent = textoNombre;
+  div.appendChild(pnombre);
 
-        const pnombre = document.createElement('p');
-        const textoNombre = `Nombre: ${capturaNombre}` ;
-        pnombre.textContent = textoNombre;
-        div.appendChild(pnombre);
+  const pAutor = document.createElement('p');
+  pAutor.classList.add('cardText');
+  const textoAutor = `Autor: ${capturaAutor}`;
+  pAutor.textContent = textoAutor;
+  div.appendChild(pAutor);
 
-        const pAutor = document.createElement('p');
-        const textoAutor = `Autor: ${capturaAutor}`;
-        pAutor.textContent = textoAutor;
-        div.appendChild(pAutor);
+  const pPaginas = document.createElement('p');
+  pPaginas.classList.add('cardText');
+  const textoPaginas = `Páginas: ${capturaPaginas}`;
+  pPaginas.textContent = textoPaginas;
+  div.appendChild(pPaginas);
 
-        const pPaginas = document.createElement('p');
-        const textoPaginas = `Paginas : ${capturaPaginas}`;
-        pPaginas.textContent = textoPaginas;
-        div.appendChild(pPaginas);
-    }
+  const pIsRead = document.createElement('p');
+  const checkbox = document.createElement('input');
+  checkbox.setAttribute('type', 'checkbox');
+   const capturaCheckbox = document.getElementById('checkbox');
+  checkbox.checked = capturaCheckbox.checked;
+  const label = document.createElement('label');
+  const labelText = document.createTextNode('Read');
+  label.appendChild(checkbox);
+  label.appendChild(labelText);
+  pIsRead.appendChild(label);
+  div.appendChild(pIsRead);
 
-    
 
+  const pBoton = document.createElement('p');
+  const buttonDelete = document.createElement('button');
+  buttonDelete.classList.add('btn-primary');
+  buttonDelete.classList.add('btn');
+  buttonDelete.textContent = 'Eliminar Libro';
+  buttonDelete.classList.add('btn-delete');
+  pBoton.appendChild(buttonDelete);
+  div.appendChild(pBoton);
+  
+  
+  buttonDelete.addEventListener('click', deleteBook);
+
+  capturaNombre = document.getElementById('nombreLibro').value = '';
+  capturaAutor = document.getElementById('autorLibro').value = '';
+  capturaPaginas = document.getElementById('paginasLibro').value = '';
+  capturaRead = document.getElementById('checkbox').checked = false;
 }
+
+function deleteBook() {
+    const div = this.parentElement.parentElement;
+    div.remove();
+  
+    const index = parseInt(this.dataset.index);
+    myLibrary.splice(index, 1);
+  }
+
+  
+
+
+
 
 
 
